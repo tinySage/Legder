@@ -9,7 +9,7 @@ from .universe import UNIVERSE
 
 # regime: (daily vol multiplier, daily drift, common-factor weight)
 REGIMES = {0: (0.7, 0.0004, 0.35), 1: (1.0, 0.0012, 0.45), 2: (2.6, -0.0030, 0.85)}
-TRANS = np.array([[0.985, 0.012, 0.003], [0.020, 0.975, 0.005], [0.060, 0.040, 0.900]])
+TRANS = np.array([[0.980, 0.012, 0.008], [0.020, 0.968, 0.012], [0.050, 0.050, 0.900]])
 
 
 def make_regime_path(n: int, rng: np.random.Generator) -> np.ndarray:
