@@ -6,7 +6,7 @@ import pandas as pd
 from models.stats import block_bootstrap_diff
 
 DISPLAY = ["SPY", "QQQ", "AAPL", "XOM", "GLD", "TLT", "BTC", "ETH"]
-WINDOWS = [20, 60, 120, 250]
+WINDOWS = [20, 40, 60, 90, 120, 180, 250]
 
 
 def matrices(rets: pd.DataFrame, tickers=DISPLAY, windows=WINDOWS) -> dict:
@@ -35,9 +35,11 @@ def calm_vs_stress(rets: pd.DataFrame, probs: np.ndarray, probs_index: pd.Dateti
     if len(calm) < 60 or len(stress) < 60:
         return {"calm": None, "stress": None, "verdict": "n/a", "n_calm": len(calm), "n_stress": len(stress)}
     a, b = _avg_pair(calm), _avg_pair(stress)
+    mat = lambda X: [[round(float(v), 3) for v in row] for row in np.corrcoef(X, rowvar=False)]
     # resample whole blocks of days, keeping each group's rows together
     m = min(len(calm), len(stress))
     lo, hi = block_bootstrap_diff(stress[-m:], calm[-m:], _avg_pair)
     verdict = "Stable" if lo > 0 else "Mixed"
     return {"calm": a, "stress": b, "difference": b - a, "ci95": [lo, hi], "n_calm": len(calm), "n_stress": len(stress),
-            "rises_in_stress": bool(lo > 0), "verdict": verdict}
+            "rises_in_stress": bool(lo > 0), "verdict": verdict,
+            "matrices": {"calm": mat(calm), "stress": mat(stress)}}
