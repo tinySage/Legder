@@ -1,0 +1,12 @@
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+statsmodels>=0.14
+arch>=7.0
+hmmlearn>=0.3
+scikit-learn>=1.5
+duckdb>=1.0
+yfinance>=0.2.50
+requests>=2.32
+jsonschema>=4.22
+pytest>=8.0

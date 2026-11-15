@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ledger: asset station</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3EBDD}
+a{color:#2A2420;text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height:1200px; box-sizing:border-box; padding:28px 32px 48px; color:#2A2420; font-family:'IBM Plex Sans',system-ui,sans-serif; background-color:#F3EBDD; background-image:linear-gradient(rgba(42,36,32,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(42,36,32,0.05) 1px, transparent 1px); background-size:64px 64px">
+<div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:28px">
+
+<header style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:12px; padding-bottom:14px; border-bottom:4px double #2A2420">
+<div style="display:flex; flex-direction:column; gap:2px">
+<span style="font:500 12px 'IBM Plex Mono',monospace; letter-spacing:0.14em; text-transform:uppercase; color:#6B5F54">Daily market weather chart</span>
+<span style="font-family:Fraunces,Georgia,serif; font-weight:700; font-size:48px; line-height:1; letter-spacing:-0.01em">Ledger</span>
+</div>
+<div style="font:400 13px/1.6 'IBM Plex Mono',monospace; text-align:right">14 Nov 2026 · 21:30 UTC · 15 min delayed<br><span style="color:#6B5F54">Sheet 2 of 5 · sample values, not advice</span></div>
+</header>
+
+<nav aria-label="Sheets" style="display:flex; flex-wrap:wrap; gap:0; border:1px solid #2A2420">
+<a href="Main.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; font:500 14px 'IBM Plex Sans',sans-serif">Regimes</a>
+<a href="Asset.dc.html" aria-current="page" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; background:#2A2420; color:#F3EBDD; font:600 14px 'IBM Plex Sans',sans-serif">Asset</a>
+<a href="Risk.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Risk</a>
+<a href="Relationships.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Relationships</a>
+<a href="Report.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Report card</a>
+</nav>
+
+<section aria-label="Station report" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px 32px">
+<div style="display:flex; align-items:center; gap:18px">
+<svg aria-hidden="true" width="64" height="64" viewBox="-32 -32 64 64"><rect x="-30" y="-30" width="60" height="60" fill="#E6C98E" stroke="#2A2420" stroke-width="2"/><circle r="5" fill="#2A2420"/><path d="M0,0 L18,-18 M18,-18 L25,-14 M12,-12 L19,-8" stroke="#2A2420" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>
+<div style="display:flex; flex-direction:column; gap:2px">
+<span style="font:500 12px 'IBM Plex Mono',monospace; letter-spacing:0.14em; text-transform:uppercase; color:#6B5F54">Station · Equity · Technology</span>
+<h1 style="margin:0; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:46px; line-height:1.05">AAPL <span style="font-weight:500; font-size:24px; color:#6B5F54">Apple Inc.</span></h1>
+</div>
+</div>
+<div style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap">
+<span style="font:500 40px 'IBM Plex Mono',monospace">231.48</span>
+<span style="font:500 18px 'IBM Plex Mono',monospace; color:#2F6B4F">+1.12%</span>
+<span style="font:500 13px 'IBM Plex Mono',monospace; padding:3px 10px; background:#E6C98E; border:1px solid #2A2420">Wind · trending</span>
+</div>
+</section>
+
+<section aria-label="Price barograph" style="display:flex; flex-direction:column; gap:12px">
+<div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding-top:12px; border-top:4px double #2A2420">
+<div style="display:flex; flex-wrap:wrap; gap:8px" role="group" aria-label="Layers">
+<button aria-pressed="true" style="min-height:44px; padding:0 16px; border:1px solid #2A2420; background:#2A2420; color:#F3EBDD; font:500 14px 'IBM Plex Sans',sans-serif">Regimes</button>
+<button aria-pressed="true" style="min-height:44px; padding:0 16px; border:1px solid #2A2420; background:#2A2420; color:#F3EBDD; font:500 14px 'IBM Plex Sans',sans-serif">Volatility band</button>
+<button aria-pressed="true" style="min-height:44px; padding:0 16px; border:1px solid #2A2420; background:#2A2420; color:#F3EBDD; font:500 14px 'IBM Plex Sans',sans-serif">Advisories</button>
+<button aria-pressed="false" style="min-height:44px; padding:0 16px; border:1px solid #2A2420; background:transparent; color:#2A2420; font:500 14px 'IBM Plex Sans',sans-serif">VaR level</button>
+</div>
+<div style="display:flex; gap:0" role="group" aria-label="Range">
+<button aria-pressed="false" style="min-height:44px; min-width:52px; border:1px solid #2A2420; background:transparent; color:#2A2420; font:500 14px 'IBM Plex Mono',monospace">1M</button>
+<button aria-pressed="false" style="min-height:44px; min-width:52px; border:1px solid #2A2420; border-left:0; background:transparent; color:#2A2420; font:500 14px 'IBM Plex Mono',monospace">3M</button>
+<button aria-pressed="true" style="min-height:44px; min-width:52px; border:1px solid #2A2420; border-left:0; background:#2A2420; color:#F3EBDD; font:500 14px 'IBM Plex Mono',monospace">6M</button>
+<button aria-pressed="false" style="min-height:44px; min-width:52px; border:1px solid #2A2420; border-left:0; background:transparent; color:#2A2420; font:500 14px 'IBM Plex Mono',monospace">1Y</button>
+</div>
+</div>
+<div style="padding:6px; border:1px solid #2A2420">
+<div style="border:1px solid #2A2420; background:#EFE5D2">
+<svg role="img" aria-label="AAPL price over six months on recorder paper, with regime shading, a volatility band and three advisories marked" viewBox="0 0 900 340" style="width:100%; height:auto; display:block">
+<sc-for list="{{bands}}" as="b"><rect x="{{b.x}}" y="0" width="{{b.w}}" height="340" fill="{{b.c}}" fill-opacity="0.7"/></sc-for>
+<sc-for list="{{grid}}" as="g"><line x1="{{g.x1}}" y1="{{g.y1}}" x2="{{g.x2}}" y2="{{g.y2}}" stroke="#2A2420" stroke-opacity="0.16"/></sc-for>
+<polygon points="{{band}}" fill="#2A2420" fill-opacity="0.12"/>
+<polyline points="{{line}}" fill="none" stroke="#2A2420" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
+<sc-for list="{{marks}}" as="m"><polygon points="{{m.pts}}" fill="#E6C98E" stroke="#2A2420" stroke-width="2.2" stroke-linejoin="round"/></sc-for>
+</svg>
+</div>
+</div>
+<div style="display:flex; justify-content:space-between; font:400 12px 'IBM Plex Mono',monospace; color:#6B5F54"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+<div style="display:flex; flex-wrap:wrap; gap:10px 24px; align-items:center; font:500 13px 'IBM Plex Sans',sans-serif">
+<span style="display:flex; align-items:center; gap:8px"><span style="width:18px; height:14px; background:#BCD3D2; border:1px solid #2A2420"></span>Calm</span>
+<span style="display:flex; align-items:center; gap:8px"><span style="width:18px; height:14px; background:#E6C98E; border:1px solid #2A2420"></span>Trending</span>
+<span style="display:flex; align-items:center; gap:8px"><span style="width:18px; height:14px; background:#D9735B; border:1px solid #2A2420"></span>Stress</span>
+<span style="display:flex; align-items:center; gap:8px"><span style="width:18px; height:14px; background:rgba(42,36,32,0.12); border:1px solid #2A2420"></span>Expected range</span>
+<span style="display:flex; align-items:center; gap:8px"><svg aria-hidden="true" width="18" height="16" viewBox="0 0 26 24"><path d="M13 2 L24 22 H2 Z" fill="#E6C98E" stroke="#2A2420" stroke-width="2.5" stroke-linejoin="round"/></svg>Unusual move</span>
+</div>
+</section>
+
+<div style="display:flex; flex-wrap:wrap; gap:28px; align-items:flex-start">
+
+<section aria-label="Model readout" style="flex:1 1 440px; min-width:0; border-top:4px double #2A2420">
+<h2 style="margin:12px 0 6px; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:26px">Model readout</h2>
+<sc-for list="{{model}}" as="k" hint-placeholder-count="4">
+<div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:14px 0; border-top:1px solid rgba(42,36,32,0.3)">
+<span style="display:flex; flex-direction:column"><span style="font-size:16px; font-weight:500">{{k.l}}</span><span style="font-size:13px; color:#6B5F54">{{k.s}}</span></span>
+<span style="font:500 22px 'IBM Plex Mono',monospace">{{k.v}}</span>
+</div>
+</sc-for>
+</section>
+
+<section aria-label="Fundamentals" style="flex:1 1 440px; min-width:0; border-top:4px double #2A2420">
+<div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin:12px 0 6px"><h2 style="margin:0; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:26px">Fundamentals</h2><span style="font:400 12px 'IBM Plex Mono',monospace; color:#6B5F54">latest filed year</span></div>
+<sc-for list="{{funds}}" as="f" hint-placeholder-count="5">
+<div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:14px 0; border-top:1px solid rgba(42,36,32,0.3)">
+<span style="font-size:16px; font-weight:500">{{f.l}}</span>
+<span style="font:500 18px 'IBM Plex Mono',monospace">{{f.v}}</span>
+</div>
+</sc-for>
+</section>
+
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const n = 120, W = 900, H = 340;
+    const p = [];
+    for (let i = 0; i < n; i++) p.push(100 + i * 0.16 + 9 * Math.sin(i / 9) + 4 * Math.sin(i / 3.3) - (i > 60 && i < 70 ? (i - 60) * 1.4 : 0) + (i >= 70 ? 14 : 0));
+    const mn = Math.min(...p) - 6, mx = Math.max(...p) + 6;
+    const X = i => (i / (n - 1)) * W;
+    const Y = v => H - 20 - ((v - mn) / (mx - mn)) * (H - 40);
+    const line = p.map((v, i) => X(i).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ');
+    const up = p.map((v, i) => X(i).toFixed(1) + ',' + Y(v + 4 + 2 * Math.sin(i / 5)).toFixed(1));
+    const dn = p.map((v, i) => X(i).toFixed(1) + ',' + Y(v - 4 - 2 * Math.sin(i / 5)).toFixed(1)).reverse();
+    const band = up.concat(dn).join(' ');
+    const C = { calm: '#BCD3D2', wind: '#E6C98E', storm: '#D9735B' };
+    const seq = [[0, 40, 'calm'], [40, 60, 'wind'], [60, 68, 'storm'], [68, 82, 'wind'], [82, 120, 'calm']];
+    const bands = seq.map(s => ({ x: X(s[0]).toFixed(1), w: (X(s[1]) - X(s[0])).toFixed(1), c: C[s[2]] }));
+    const grid = [];
+    for (let i = 1; i < 9; i++) grid.push({ x1: i * 100, y1: 0, x2: i * 100, y2: 340 });
+    for (let j = 1; j < 6; j++) grid.push({ x1: 0, y1: j * 56.7, x2: 900, y2: j * 56.7 });
+    const marks = [52, 63, 97].map(i => {
+      const x = X(i), y = Y(p[i]) - 16;
+      return { pts: x.toFixed(1) + ',' + (y - 13).toFixed(1) + ' ' + (x - 11).toFixed(1) + ',' + (y + 8).toFixed(1) + ' ' + (x + 11).toFixed(1) + ',' + (y + 8).toFixed(1) };
+    });
+    const model = [
+      { l: 'Current regime', s: 'Hidden Markov model, 3 states', v: 'Trending' },
+      { l: 'One-day loss limit, 95%', s: 'Value-at-Risk, filtered historical', v: '−2.1%' },
+      { l: 'Expected swing, next 5 days', s: 'GARCH(1,1), annualised', v: '24%' },
+      { l: 'Last unusual move', s: '63 days ago, 3.4 standard deviations', v: 'Down' }
+    ];
+    const funds = [
+      { l: 'Revenue', v: '[REVENUE]' },
+      { l: 'Net income', v: '[NET INCOME]' },
+      { l: 'Operating margin', v: '[MARGIN]' },
+      { l: 'Debt to equity', v: '[RATIO]' },
+      { l: 'Free cash flow', v: '[FCF]' }
+    ];
+    return { line, band, bands, grid, marks, model, funds };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ledger: risk warnings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3EBDD}
+a{color:#2A2420;text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height:1160px; box-sizing:border-box; padding:28px 32px 48px; color:#2A2420; font-family:'IBM Plex Sans',system-ui,sans-serif; background-color:#F3EBDD; background-image:linear-gradient(rgba(42,36,32,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(42,36,32,0.05) 1px, transparent 1px); background-size:64px 64px">
+<div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:28px">
+
+<header style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:12px; padding-bottom:14px; border-bottom:4px double #2A2420">
+<div style="display:flex; flex-direction:column; gap:2px">
+<span style="font:500 12px 'IBM Plex Mono',monospace; letter-spacing:0.14em; text-transform:uppercase; color:#6B5F54">Daily market weather chart</span>
+<span style="font-family:Fraunces,Georgia,serif; font-weight:700; font-size:48px; line-height:1; letter-spacing:-0.01em">Ledger</span>
+</div>
+<div style="font:400 13px/1.6 'IBM Plex Mono',monospace; text-align:right">14 Nov 2026 · 21:30 UTC · 15 min delayed<br><span style="color:#6B5F54">Sheet 3 of 5 · sample values, not advice</span></div>
+</header>
+
+<nav aria-label="Sheets" style="display:flex; flex-wrap:wrap; gap:0; border:1px solid #2A2420">
+<a href="Main.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; font:500 14px 'IBM Plex Sans',sans-serif">Regimes</a>
+<a href="Asset.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Asset</a>
+<a href="Risk.dc.html" aria-current="page" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; background:#2A2420; color:#F3EBDD; font:600 14px 'IBM Plex Sans',sans-serif">Risk</a>
+<a href="Relationships.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Relationships</a>
+<a href="Report.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Report card</a>
+</nav>
+
+<section aria-label="Intro" style="display:flex; flex-direction:column; gap:6px; max-width:720px">
+<h1 style="margin:0; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:40px; line-height:1.1">Risk warnings</h1>
+<p style="margin:0; font-size:16px; line-height:1.55; color:#6B5F54">How bad a day could get, and whether the model's warning line held up when checked against what happened.</p>
+</section>
+
+<section aria-label="Value-at-Risk backtest" style="display:flex; flex-direction:column; gap:14px; border-top:4px double #2A2420; padding-top:12px">
+<div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:8px">
+<h2 style="margin:0; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:26px">AAPL: did the 95% line hold?</h2>
+<span style="font:400 13px 'IBM Plex Mono',monospace; color:#6B5F54">last 120 trading days</span>
+</div>
+<div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px 28px">
+<div style="display:flex; align-items:baseline; gap:12px"><span style="font:500 56px 'IBM Plex Mono',monospace; line-height:1">{{breaches}}</span><span style="font-size:16px; line-height:1.3">days past the line,<br>{{expected}} expected</span></div>
+<span style="font:500 13px 'IBM Plex Mono',monospace; padding:4px 12px; background:#BCD3D2; border:1px solid #2A2420">✓ Count test: pass</span>
+<span style="font:500 13px 'IBM Plex Mono',monospace; padding:4px 12px; background:#D9735B; border:1px solid #2A2420">! Clustering test: breaches bunch up</span>
+</div>
+
+<div style="padding:6px; border:1px solid #2A2420">
+<div style="border:1px solid #2A2420; background:#EFE5D2">
+<svg role="img" aria-label="Daily returns as bars with the model's warning line; days past the line are filled dark red" viewBox="0 0 900 260" style="width:100%; height:auto; display:block">
+<sc-for list="{{grid}}" as="g"><line x1="{{g.x1}}" y1="{{g.y1}}" x2="{{g.x2}}" y2="{{g.y2}}" stroke="#2A2420" stroke-opacity="0.14"/></sc-for>
+<line x1="0" y1="130" x2="900" y2="130" stroke="#2A2420" stroke-opacity="0.6"/>
+<sc-for list="{{bars}}" as="b"><rect x="{{b.x}}" y="{{b.y}}" width="5.6" height="{{b.h}}" fill="{{b.c}}" stroke="#2A2420" stroke-width="0.8"/></sc-for>
+<polyline points="{{limit}}" fill="none" stroke="#2A2420" stroke-width="2.4" stroke-dasharray="8 5"/>
+</svg>
+</div>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:10px 24px; align-items:center; font:500 13px 'IBM Plex Sans',sans-serif">
+<span style="display:flex; align-items:center; gap:8px"><span style="width:14px; height:14px; background:#BCD3D2; border:1px solid #2A2420"></span>Daily return</span>
+<span style="display:flex; align-items:center; gap:8px"><span style="width:26px; border-top:2.4px dashed #2A2420"></span>Warning line (95% VaR)</span>
+<span style="display:flex; align-items:center; gap:8px"><span style="width:14px; height:14px; background:#D9735B; border:1px solid #2A2420"></span>Day past the line</span>
+</div>
+<p style="margin:0; font-size:15px; line-height:1.55; max-width:780px">A good 95% line is crossed about 1 day in 20, spread out evenly. Too many crossings means the model understates risk. Crossings that cluster mean it reacts too slowly when volatility jumps.</p>
+</section>
+
+<div style="display:flex; flex-wrap:wrap; gap:28px; align-items:flex-start">
+
+<section aria-label="Risk by asset" style="flex:1.2 1 480px; min-width:0; border-top:4px double #2A2420">
+<h2 style="margin:12px 0 8px; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:26px">By station</h2>
+<div style="display:grid; grid-template-columns:1fr 0.8fr 0.9fr 1.3fr; gap:10px; padding-bottom:8px; font:500 12px 'IBM Plex Mono',monospace; letter-spacing:0.08em; text-transform:uppercase; color:#6B5F54"><span>Asset</span><span>Loss line</span><span>Typical bad day</span><span>Line check</span></div>
+<sc-for list="{{assets}}" as="a" hint-placeholder-count="6">
+<a href="Asset.dc.html" style="display:grid; grid-template-columns:1fr 0.8fr 0.9fr 1.3fr; align-items:center; gap:10px; min-height:54px; border-top:1px solid rgba(42,36,32,0.3); font:400 15px 'IBM Plex Mono',monospace">
+<span style="font:600 16px 'IBM Plex Sans',sans-serif">{{a.t}}</span><span>{{a.var}}</span><span>{{a.es}}</span>
+<span><span style="font:500 12px 'IBM Plex Mono',monospace; padding:3px 9px; background:{{a.bg}}; border:1px solid #2A2420">{{a.mark}} {{a.verdict}}</span></span>
+</a>
+</sc-for>
+</section>
+
+<section aria-label="Drawdown" style="flex:1 1 360px; min-width:0; border-top:4px double #2A2420">
+<h2 style="margin:12px 0 6px; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:26px">Drawdown, AAPL</h2>
+<p style="margin:0 0 10px; font-size:15px; line-height:1.5; color:#6B5F54">How far the price sat below its previous high.</p>
+<div style="border:1px solid #2A2420; background:#EFE5D2">
+<svg role="img" aria-label="Drawdown from previous highs over the last year" viewBox="0 0 400 180" style="width:100%; height:auto; display:block">
+<line x1="0" y1="10" x2="400" y2="10" stroke="#2A2420" stroke-width="1.5"/>
+<polygon points="{{dd}}" fill="#D9735B" fill-opacity="0.75" stroke="#2A2420" stroke-width="2" stroke-linejoin="round"/>
+</svg>
+</div>
+<div style="display:flex; justify-content:space-between; margin-top:6px; font:400 12px 'IBM Plex Mono',monospace; color:#6B5F54"><span>12 months ago</span><span>Today</span></div>
+<div style="display:flex; justify-content:space-between; align-items:baseline; padding-top:14px; margin-top:12px; border-top:1px solid rgba(42,36,32,0.3)"><span style="font-size:16px">Deepest drop in the window</span><span style="font:500 24px 'IBM Plex Mono',monospace">{{maxdd}}</span></div>
+</section>
+
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const n = 120, K = 24;
+    const bars = [], lim = [];
+    let breaches = 0;
+    for (let i = 0; i < n; i++) {
+      const r = 1.2 * Math.sin(i * 1.9) + 0.9 * Math.cos(i * 0.73) + ((i > 64 && i < 70) ? -1.9 : 0);
+      const v = -(1.9 + 0.4 * Math.sin(i / 15));
+      const hit = r < v;
+      if (hit) breaches++;
+      const h = Math.max(2, Math.abs(r) * K);
+      const y = r >= 0 ? 130 - h : 130;
+      bars.push({ x: (i * 7.5).toFixed(1), y: y.toFixed(1), h: h.toFixed(1), c: hit ? '#D9735B' : '#BCD3D2' });
+      lim.push((i * 7.5 + 2.8).toFixed(1) + ',' + (130 - v * K).toFixed(1));
+    }
+    const grid = [];
+    for (let i = 1; i < 9; i++) grid.push({ x1: i * 100, y1: 0, x2: i * 100, y2: 260 });
+    for (let j = 1; j < 5; j++) grid.push({ x1: 0, y1: j * 52, x2: 900, y2: j * 52 });
+    const mk = (t, v, e, ok, verdict) => ({ t, var: v, es: e, verdict, mark: ok ? '✓' : '!', bg: ok ? '#BCD3D2' : '#D9735B' });
+    const assets = [
+      mk('AAPL', '−2.1%', '−2.9%', false, 'Clustered'),
+      mk('SPY', '−1.4%', '−2.0%', true, 'Pass'),
+      mk('QQQ', '−1.8%', '−2.5%', true, 'Pass'),
+      mk('BTC', '−4.6%', '−6.1%', true, 'Pass'),
+      mk('ETH', '−5.8%', '−7.9%', false, 'Too many'),
+      mk('GLD', '−1.2%', '−1.7%', true, 'Pass')
+    ];
+    let peak = 0, cur = 0, min = 0; const pts = [];
+    for (let i = 0; i < 100; i++) {
+      cur += Math.sin(i / 6) * 1.1 + Math.cos(i / 2.3) * 0.7 + 0.18 - (i > 40 && i < 52 ? 1.6 : 0);
+      peak = Math.max(peak, cur);
+      const d = cur - peak; if (d < min) min = d;
+      pts.push(d);
+    }
+    const sc = 160 / Math.max(1, -min);
+    const line = pts.map((d, i) => (i * 4).toFixed(1) + ',' + (10 - d * sc).toFixed(1));
+    const dd = ['0,10'].concat(line).concat(['396,10']).join(' ');
+    return { bars, limit: lim.join(' '), grid, breaches, expected: Math.round(n * 0.05), assets, dd, maxdd: '−' + (-min / 1.6).toFixed(1) + '%' };
+  }
+}
+</script>
+</body>
+</html>

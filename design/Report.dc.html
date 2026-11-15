@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ledger: model report card</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3EBDD}
+a{color:#2A2420;text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height:1260px; box-sizing:border-box; padding:28px 32px 48px; color:#2A2420; font-family:'IBM Plex Sans',system-ui,sans-serif; background-color:#F3EBDD; background-image:linear-gradient(rgba(42,36,32,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(42,36,32,0.05) 1px, transparent 1px); background-size:64px 64px">
+<div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:28px">
+
+<header style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:12px; padding-bottom:14px; border-bottom:4px double #2A2420">
+<div style="display:flex; flex-direction:column; gap:2px">
+<span style="font:500 12px 'IBM Plex Mono',monospace; letter-spacing:0.14em; text-transform:uppercase; color:#6B5F54">Daily market weather chart</span>
+<span style="font-family:Fraunces,Georgia,serif; font-weight:700; font-size:48px; line-height:1; letter-spacing:-0.01em">Ledger</span>
+</div>
+<div style="font:400 13px/1.6 'IBM Plex Mono',monospace; text-align:right">Models last re-run 14 Nov 2026, 06:00 UTC<br><span style="color:#6B5F54">Sheet 5 of 5 · sample values, not advice</span></div>
+</header>
+
+<nav aria-label="Sheets" style="display:flex; flex-wrap:wrap; gap:0; border:1px solid #2A2420">
+<a href="Main.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; font:500 14px 'IBM Plex Sans',sans-serif">Regimes</a>
+<a href="Asset.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Asset</a>
+<a href="Risk.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Risk</a>
+<a href="Relationships.dc.html" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; font:500 14px 'IBM Plex Sans',sans-serif">Relationships</a>
+<a href="Report.dc.html" aria-current="page" style="flex:1 1 140px; display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 14px; border-left:1px solid #2A2420; background:#2A2420; color:#F3EBDD; font:600 14px 'IBM Plex Sans',sans-serif">Report card</a>
+</nav>
+
+<section aria-label="Intro" style="display:flex; flex-direction:column; gap:6px; max-width:740px">
+<h1 style="margin:0; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:40px; line-height:1.1">Forecast verification</h1>
+<p style="margin:0; font-size:16px; line-height:1.55; color:#6B5F54">Weather services publish how often their forecasts were right. This sheet does the same. Every model is tested on data it has not seen, against a simple baseline, and failures are shown as plainly as passes.</p>
+</section>
+
+<section aria-label="Forecast versus baseline" style="display:flex; flex-direction:column; gap:14px; border-top:4px double #2A2420; padding-top:12px">
+<div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:8px">
+<h2 style="margin:0; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:26px">Do price forecasts beat "tomorrow equals today"?</h2>
+<span style="font:400 13px 'IBM Plex Mono',monospace; color:#6B5F54">next-day error · walk-forward test · sample values</span>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<sc-for list="{{fc}}" as="f" hint-placeholder-count="3">
+<div style="display:grid; grid-template-columns:minmax(130px,200px) 1fr 70px; align-items:center; gap:14px">
+<span style="font-size:16px; font-weight:500">{{f.name}}</span>
+<div style="position:relative; height:26px; border:1px solid #2A2420; background:#EFE5D2">
+<div style="width:{{f.w}}%; height:100%; background:{{f.c}}; border-right:1px solid #2A2420; box-sizing:border-box"></div>
+<div style="position:absolute; left:{{f.base}}%; top:-6px; bottom:-6px; border-left:2px dashed #2A2420"></div>
+</div>
+<span style="font:500 16px 'IBM Plex Mono',monospace; text-align:right">{{f.v}}</span>
+</div>
+</sc-for>
+</div>
+<p style="margin:0; font-size:15px; line-height:1.55; max-width:780px">Lower is better and the dashed line is the baseline. Gaps this small sit inside the noise, so neither model is shown as an improvement. That is a normal result for daily price changes.</p>
+</section>
+
+<section aria-label="All models" style="display:flex; flex-direction:column; gap:0; border-top:4px double #2A2420; padding-top:12px">
+<h2 style="margin:0 0 6px; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:26px">All models</h2>
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(380px,100%),1fr)); column-gap:32px">
+<sc-for list="{{models}}" as="m" hint-placeholder-count="6">
+<article style="display:flex; flex-direction:column; gap:10px; padding:18px 0 20px; border-top:1px solid rgba(42,36,32,0.3)">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px">
+<h3 style="margin:0; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:21px">{{m.name}}</h3>
+<span style="flex:none; font:500 12px 'IBM Plex Mono',monospace; padding:3px 10px; background:{{m.bg}}; border:1px solid #2A2420">{{m.mark}} {{m.verdict}}</span>
+</div>
+<p style="margin:0; font-size:15px; line-height:1.5">{{m.what}}</p>
+<div style="font-size:14px; line-height:1.55; padding-left:12px; border-left:3px solid #2A2420"><span style="color:#6B5F54">Tested by</span> {{m.test}}<br><span style="color:#6B5F54">Result</span> <strong style="font-weight:600">{{m.result}}</strong></div>
+<p style="margin:0; font-size:14px; line-height:1.5; color:#6B5F54"><span style="color:#2A2420; font-weight:600">Limitation</span> {{m.limit}}</p>
+</article>
+</sc-for>
+</div>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1260}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const mx = 1.3;
+    const f = (name, v, c) => ({ name, v: v.toFixed(2), w: (v / mx * 100).toFixed(1), base: (1 / mx * 100).toFixed(1), c });
+    const fc = [
+      f('Tomorrow equals today', 1.0, '#BCD3D2'),
+      f('ARIMA', 1.02, '#E6C98E'),
+      f('Gradient boosting', 0.99, '#E6C98E')
+    ];
+    const V = {
+      pass: { mark: '✓', bg: '#BCD3D2' },
+      mixed: { mark: '~', bg: '#E6C98E' },
+      fail: { mark: '!', bg: '#D9735B' }
+    };
+    const m = (name, k, verdict, what, test, result, limit) => Object.assign({ name, verdict, what, test, result, limit }, V[k]);
+    const models = [
+      m('Volatility forecast', 'pass', 'Beats baseline', 'Predicts how large daily moves will be over the next few days (GARCH).', 'forecasting 5-day volatility on 36 rolling windows, versus a plain 30-day average.', 'error 11% lower than the baseline.', 'Slow to react to a sudden shock such as an earnings surprise.'),
+      m('Value-at-Risk line', 'mixed', 'Mixed', 'Sets a daily loss level that should be crossed about 1 day in 20.', 'counting crossings over 500 days and testing whether they bunch up.', 'right count, but crossings cluster in 2 of 6 assets.', 'Underestimates risk right after volatility jumps.'),
+      m('Regime detection', 'pass', 'Stable', 'Labels each market calm, trending or stress from returns and volatility.', 'checking that regimes persist instead of flipping daily.', 'the average regime lasts 19 trading days.', 'Labels are known only after the fact, so today’s label can change.'),
+      m('Unusual-move flags', 'mixed', 'Mixed', 'Flags days that look unlike the recent past.', 'comparing the next 1, 5 and 20 days after a flag with days without one.', 'higher volatility after flags, no clear direction.', 'Says something odd happened, not what comes next.'),
+      m('Price forecast', 'fail', 'Does not beat baseline', 'Predicts tomorrow’s price change (ARIMA and gradient boosting).', 'walk-forward test on 5 years, no look-ahead, versus “tomorrow equals today”.', 'error within 2% of the baseline in either direction.', 'Daily price changes are close to random. Do not trade on this.'),
+      m('Correlation structure', 'pass', 'Stable', 'Shows which assets move together over a rolling window.', 'comparing correlations in calm and stress regimes.', 'pairs move together more on stress days.', 'Correlations change quickly and a short window is noisy.')
+    ];
+    return { fc, models };
+  }
+}
+</script>
+</body>
+</html>
