@@ -2,7 +2,7 @@
 
 A daily market weather chart for stocks, crypto and commodities. Each asset class is a region on a map, coloured by its current regime (calm, trending, stress). Behind the map are models that are tested on data they have not seen, against simple baselines, and the results are shown as found, including the ones that do not flatter the models.
 
-Live site: _add the Netlify URL here after the first deploy._
+Live site: https://bright-mochi-5d09e0.netlify.app
 
 ![Regimes sheet](docs/screenshots/home.png)
 
@@ -12,6 +12,29 @@ Live site: _add the Netlify URL here after the first deploy._
 | ![Relationships](docs/screenshots/relationships.png) | ![Report card](docs/screenshots/report.png) |
 
 > **The screenshots and the data committed in `web/public/data` are synthetic.** They come from a simulated market with built-in volatility clustering and regimes, so the models naturally look good on it. That proves the code runs and the checks work. It says nothing about real markets. Real numbers appear after the first run of the refresh workflow, and the site shows a banner while the data is synthetic.
+
+## About
+
+I built Ledger to show how I work with data, not to predict markets. The question behind it: can a few standard time-series models say something useful about market conditions, and can I test that honestly? Each model is scored on data it has not seen, against a plain baseline, and the page reports the outcome whether it looks good or not.
+
+It is a learning and portfolio project. It is not investment advice and makes no profit claim.
+
+## Skills used
+
+| Skill | Where it shows up |
+|---|---|
+| Time-series modelling | GARCH(1,1) volatility (own recursion, checked equal to the `arch` library), 3-state hidden Markov regimes with a forward filter only, ARIMA and gradient-boosting forecasts |
+| Model evaluation | Walk-forward testing, a "tomorrow equals today" baseline, Diebold-Mariano test with Newey-West errors, block bootstrap |
+| Risk statistics | Filtered historical simulation VaR and expected shortfall, Kupiec and Christoffersen backtests, drawdown |
+| Anomaly detection | Isolation forest and trailing robust z-scores, checked against what happens in the days after a flag |
+| Avoiding leakage | A causality test (`tests/leakage.py`) that fails if any past output changes when future data changes, plus a mutation check that it catches a smoother |
+| Data engineering | Yahoo and CoinGecko ingestion with retries, DuckDB store, calendar alignment, stale-data handling, partial-bar dropping |
+| Testing and CI | 33 fast Python tests, an end-to-end test, JSON schema validation, TypeScript type check, GitHub Actions |
+| Automation | Daily scheduled refresh that fetches, models and commits data, then Netlify redeploys |
+| Front end and design | Next.js static export, hand-built SVG charts (d3 for scales only), a custom weather-map design, accessibility (contrast, 44px targets, not colour alone) |
+| Honest reporting | A report card that shows models that fail, limitations per model, and a banner while data is synthetic |
+
+Built with Claude (Claude Code) as a pair-programming tool, in four stages, each reviewed and merged by me.
 
 ## What is in it
 
