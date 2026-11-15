@@ -95,6 +95,8 @@ Real results are not in yet. The table below is filled from the first real refre
 
 Prices: Yahoo Finance via `yfinance`. Crypto snapshot: [CoinGecko](https://www.coingecko.com). Fonts: Fraunces, IBM Plex Sans and IBM Plex Mono (SIL Open Font License).
 
+Code is released under the [MIT License](LICENSE). Data from Yahoo Finance and CoinGecko stays under their own terms.
+
 Educational tool, not financial advice. Data is delayed.
 
 `design/` holds the design canvas files the web app was built from.
